@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">weventure</string>
+    <string name="textview">TextView</string>
+    <string name="profilepicture">profilePicture</string>
+    <string name="rewardsredeem1">rewardsRedeem1</string>
+    <string name="rewardsredeem2">rewardsRedeem2</string>
+    <string name="rewardsredeem3">rewardsRedeem3</string>
 </resources>
