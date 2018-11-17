@@ -25,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="173dp"
+        android:tooltipText="Matching images..."
         android:progressDrawable="@drawable/circular_progress_bar" />
 
     <Button
