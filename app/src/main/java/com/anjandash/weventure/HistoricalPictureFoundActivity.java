@@ -12,7 +12,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.anjandash.weventure.restclient.RequestSender;
 import com.anjandash.weventure.restclient.model.Challenge;
@@ -32,10 +32,15 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
 
     private int challengeId;
 
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historical_picture_found);
+
+        spinner = (ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         final Challenge challenge = getChallengeFromSharedPreferences();
         this.challengeId = challenge.getChallengeId();
@@ -68,6 +73,7 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            spinner.setVisibility(View.VISIBLE);
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
@@ -77,7 +83,6 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
 
             String encoded_str = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-            Toast.makeText(HistoricalPictureFoundActivity.this, "" + this.challengeId, Toast.LENGTH_LONG).show();
             RequestSender.submitChallengePhoto(this, new NewChallenge(encoded_str, this.challengeId),
                     new RequestSender.SubmitChallengePhotoCallback() {
                         @Override

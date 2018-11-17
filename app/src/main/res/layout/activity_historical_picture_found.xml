@@ -15,6 +15,14 @@
         android:layout_weight="1"
         android:src="@drawable/ic_launcher_foreground" />
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:progressDrawable="@drawable/circular_progress_bar"/>
+
     <Button
         android:id="@+id/buttontp"
         android:layout_weight="0"
@@ -24,8 +32,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorAccent"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"
         android:text="Take a picture"
         />
 
