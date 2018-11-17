@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActionBar().hide();
+
         intromanager = new Intromanager(this);
         if(!intromanager.Check()){
             intromanager.setFirst(false);
