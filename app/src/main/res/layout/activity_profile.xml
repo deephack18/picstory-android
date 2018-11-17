@@ -74,7 +74,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="156dp"
         android:layout_marginEnd="18dp"
-        android:background="#ffe14d"
+        android:background="#c2c2c2"
         android:textColor="#ffffff"
         android:text="REDEEM" />
 
@@ -85,7 +85,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/button2"
         android:layout_marginBottom="84dp"
-        android:background="#ffe14d"
+        android:background="#c2c2c2"
         android:textColor="#ffffff"
         android:text="REDEEM" />
 
@@ -96,7 +96,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/button2"
         android:layout_marginBottom="12dp"
-        android:background="#ffe14d"
+        android:background="#c2c2c2"
         android:textColor="#ffffff"
         android:text="REDEEM" />
 
