@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void saveChallengeIntoPrefs(Challenge challenge) {
-        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences  mPrefs = getSharedPreferences("challenge", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(challenge);
