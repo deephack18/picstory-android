@@ -35,7 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onHistoricalPictureFound(Challenge challenge) {
                 saveChallengeIntoPrefs(challenge);
-                Toast.makeText(ProfileActivity.this, "" + challenge.getChallengeId(), Toast.LENGTH_LONG).show();
                 createNotificationChannel();
                 sendNotification(challenge.getChallengeId());
             }

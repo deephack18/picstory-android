@@ -77,7 +77,6 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
 
             String encoded_str = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-            Toast.makeText(HistoricalPictureFoundActivity.this, "" + this.challengeId, Toast.LENGTH_LONG).show();
             RequestSender.submitChallengePhoto(this, new NewChallenge(encoded_str, this.challengeId),
                     new RequestSender.SubmitChallengePhotoCallback() {
                         @Override
