@@ -12,7 +12,7 @@ import retrofit2.http.Path;
  */
 
 public interface WebApi {
-    @GET("/check-location/{lng}/{lat}")
+    @GET("/api/v1.0/check-location/{lng}/{lat}")
     Call<Challenge> checkLocation(@Path("lng") double lng, @Path("lat") double lat);
 
 }
