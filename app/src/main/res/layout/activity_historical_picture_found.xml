@@ -14,6 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="27dp"
         android:layout_weight="1"
+        android:background="#aaffd400"
         android:src="@drawable/ic_launcher_foreground" />
 
     <ProgressBar
