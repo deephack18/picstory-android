@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //getActionBar().hide();
-
         //getActionBar().hide();
 
 

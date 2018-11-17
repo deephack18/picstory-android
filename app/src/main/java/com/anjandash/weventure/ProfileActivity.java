@@ -1,6 +1,8 @@
 package com.anjandash.weventure;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -95,5 +97,20 @@ public class ProfileActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        (new AlertDialog.Builder(this))
+                .setTitle("Exit PicStory")
+                .setMessage("Do you want to exit?")
+                .setPositiveButton("NO", null)
+                .setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                    }
+                })
+                .show();
     }
 }
