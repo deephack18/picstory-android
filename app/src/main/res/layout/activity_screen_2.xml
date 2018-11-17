@@ -8,6 +8,6 @@
         android:background="@drawable/sc2"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:contentDescription="@string/imageScreen1" />
+        android:contentDescription="@string/imageScreen2" />
 
 </RelativeLayout>
