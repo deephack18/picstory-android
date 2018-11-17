@@ -24,8 +24,8 @@ import com.google.gson.Gson;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private final static double LNG = 46.453029;
-    private final static double LAT = 11.620121;
+    private final static double LNG = 46.66771582;
+    private final static double LAT = 11.61147488;
     private static final String CHANNEL_ID = "1";
 
     @Override
@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         int points = intent.getIntExtra("POINTS", -1);
 
         if(points != -1){
-            Toast.makeText(ProfileActivity.this, "You earned " + points + " points!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, "You got " + points + " out of 100 points!", Toast.LENGTH_SHORT).show();
             Button pointsButton = findViewById(R.id.button);
             int currentPoints = Integer.parseInt((String)pointsButton.getText());
             pointsButton.setText(Integer.toString(currentPoints + points));
