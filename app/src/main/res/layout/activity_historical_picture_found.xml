@@ -6,17 +6,17 @@
 
 
     <ImageView
-        android:id="@+id/hist_img"
-        android:layout_weight="1"
+        android:id="@+id/search_go_btn"
+        android:layout_width="191dp"
+        android:layout_height="317dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_foreground"
-        />
+        android:layout_weight="1"
+        android:src="@drawable/ic_launcher_foreground" />
 
     <Button
+        android:id="@+id/buttontp2"
         android:layout_weight="0"
         android:layout_width="match_parent"
         android:layout_height="45dp"

@@ -13,4 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="TAKE A PICTURE" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@color/colorPrimaryDark" />
 </RelativeLayout>
