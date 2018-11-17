@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">weventure</string>
+    <string name="app_name">PicStory</string>
     <string name="textview">TextView</string>
     <string name="profilepicture">profilePicture</string>
     <string name="rewardsredeem1">rewardsRedeem1</string>
