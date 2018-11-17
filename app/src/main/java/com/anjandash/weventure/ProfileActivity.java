@@ -58,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.camera)
+                .setSmallIcon(R.drawable.unsplash)
                 .setContentTitle("New historical photo")
                 .setContentText("Checkout a new historical photo and take a pic!")
                 .setContentIntent(pendingIntent)
