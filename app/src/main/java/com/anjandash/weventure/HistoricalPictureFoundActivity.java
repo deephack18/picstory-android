@@ -12,11 +12,14 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.anjandash.weventure.restclient.RequestSender;
 import com.anjandash.weventure.restclient.model.Challenge;
+import com.anjandash.weventure.restclient.model.ChallengeResult;
+import com.anjandash.weventure.restclient.model.NewChallenge;
 import com.google.gson.Gson;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 /**
@@ -27,13 +30,19 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    private int challengeId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historical_picture_found);
 
-        Bitmap bitmap = getBitmapFromSharedPreferences();
-        ImageView view = findViewById(R.id.hist_img);
+        final Challenge challenge = getChallengeFromSharedPreferences();
+        this.challengeId = challenge.getChallengeId();
+        byte[] bytes = Base64.decode(challenge.getImage(), 0);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+        ImageView view = findViewById(R.id.hist);
         view.setImageBitmap(bitmap);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -62,27 +71,32 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            ImageView imv = (ImageView) findViewById(R.id.imageView);
-            imv.setImageBitmap(imageBitmap);
-
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream .toByteArray();
 
-            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            String encoded_str = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-
+            Toast.makeText(HistoricalPictureFoundActivity.this, "" + this.challengeId, Toast.LENGTH_LONG).show();
+            RequestSender.submitChallengePhoto(this, new NewChallenge(encoded_str, this.challengeId),
+                    new RequestSender.SubmitChallengePhotoCallback() {
+                        @Override
+                        public void onChallengeResult(ChallengeResult challengeResult) {
+                            Intent i = new Intent(
+                                    HistoricalPictureFoundActivity.this,
+                                    ProfileActivity.class);
+                            startActivity(new Intent(i));
+                        }
+                    }
+            );
         }
     }
 
-    private Bitmap getBitmapFromSharedPreferences() {
+    private Challenge getChallengeFromSharedPreferences() {
         Gson gson = new Gson();
         SharedPreferences mPrefs = getSharedPreferences("challenge", MODE_PRIVATE);
         String json = mPrefs.getString("latest_challenge", "");
         Challenge challenge = gson.fromJson(json, Challenge.class);
-
-        byte[] bytes = Base64.decode(challenge.getImage(), 0);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        return bitmap;
+        return challenge;
     }
 }

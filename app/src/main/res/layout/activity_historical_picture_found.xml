@@ -6,7 +6,7 @@
 
 
     <ImageView
-        android:id="@+id/search_go_btn"
+        android:id="@+id/hist"
         android:layout_width="191dp"
         android:layout_height="317dp"
         android:layout_gravity="center"
@@ -16,7 +16,7 @@
         android:src="@drawable/ic_launcher_foreground" />
 
     <Button
-        android:id="@+id/buttontp2"
+        android:id="@+id/buttontp"
         android:layout_weight="0"
         android:layout_width="match_parent"
         android:layout_height="45dp"

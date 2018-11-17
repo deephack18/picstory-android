@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.anjandash.weventure.restclient.RequestSender;
 import com.anjandash.weventure.restclient.model.Challenge;
@@ -30,22 +31,11 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
-        Button button = (Button) findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, HPFActivity.class);
-                intent.putExtra("MESSAGE:", "MainAct");
-                startActivity(intent);
-
-            }
-        });
-
         RequestSender.sendLocation(this, LNG, LAT, new RequestSender.CheckLocationCallBack() {
             @Override
             public void onHistoricalPictureFound(Challenge challenge) {
                 saveChallengeIntoPrefs(challenge);
+                Toast.makeText(ProfileActivity.this, "" + challenge.getChallengeId(), Toast.LENGTH_LONG).show();
                 createNotificationChannel();
                 sendNotification(challenge.getChallengeId());
             }

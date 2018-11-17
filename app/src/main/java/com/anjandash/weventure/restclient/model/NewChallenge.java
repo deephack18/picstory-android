@@ -11,6 +11,11 @@ public class NewChallenge {
     public NewChallenge() {
     }
 
+    public NewChallenge(String img, int challengeId) {
+        this.img = img;
+        this.challengeId = challengeId;
+    }
+
     public String getImg() {
         return img;
     }
