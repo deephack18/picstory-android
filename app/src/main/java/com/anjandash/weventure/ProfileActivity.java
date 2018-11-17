@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         int points = intent.getIntExtra("POINTS", -1);
 
         if(points != -1){
-            Toast.makeText(ProfileActivity.this, "You earned " + points + " points!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, "You got " + points + " out of 100 points!", Toast.LENGTH_SHORT).show();
             Button pointsButton = findViewById(R.id.button);
             int currentPoints = Integer.parseInt((String)pointsButton.getText());
             pointsButton.setText(Integer.toString(currentPoints + points));
