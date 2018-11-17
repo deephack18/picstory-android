@@ -25,6 +25,7 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HPFActivity" />
         <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".HistoricalPictureFoundActivity"/>
     </application>
 
 </manifest>
