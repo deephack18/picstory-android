@@ -22,8 +22,8 @@ import com.google.gson.Gson;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private final static double LNG = 46.453029;
-    private final static double LAT = 11.620121;
+    private final static double LNG = 46.66771582;
+    private final static double LAT = 11.61147488;
     private static final String CHANNEL_ID = "1";
 
     @Override
