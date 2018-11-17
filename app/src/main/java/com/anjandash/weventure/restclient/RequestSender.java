@@ -40,15 +40,18 @@ public class RequestSender {
         return webApi;
     }
 
-    public static void sendLocation(final Context context, double lng, double lat) {
+    public interface CheckLocationCallBack {
+        void onHistoricalPictureFound(Challenge challenge);
+    }
+
+    public static void sendLocation(final Context context, double lng, double lat, final CheckLocationCallBack checkLocationCallBack) {
         WebApi webApi = RequestSender.getWebAPI(context);
         Call<Challenge> call = webApi.checkLocation(lng, lat);
         call.enqueue(new Callback<Challenge>() {
             @Override
             public void onResponse(Call<Challenge> call, Response<Challenge> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(context, "Ok! ", Toast.LENGTH_SHORT)
-                            .show();
+                    checkLocationCallBack.onHistoricalPictureFound(response.body());
                 } else {
                     Toast.makeText(context, response.message(), Toast.LENGTH_SHORT)
                             .show();
