@@ -32,10 +32,13 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         Intent intent = getIntent();
-        String points = intent.getStringExtra("POINTS");
+        int points = intent.getIntExtra("POINTS", -1);
 
-        if(true){
-            Toast.makeText(ProfileActivity.this, "You earned" + points + "points!", Toast.LENGTH_SHORT);
+        if(points != -1){
+            Toast.makeText(ProfileActivity.this, "You earned " + points + " points!", Toast.LENGTH_SHORT).show();
+            Button pointsButton = findViewById(R.id.button);
+            int currentPoints = Integer.parseInt((String)pointsButton.getText());
+            pointsButton.setText(Integer.toString(currentPoints + points));
         }
 
 
