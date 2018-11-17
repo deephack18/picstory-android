@@ -5,6 +5,12 @@
     <string name="rewardsredeem1">rewardsRedeem1</string>
     <string name="rewardsredeem2">rewardsRedeem2</string>
     <string name="rewardsredeem3">rewardsRedeem3</string>
-    <string name="imageScreen1">TODO</string>
+
+    <string name="imageScreentodo">TODO</string>
     <string name="welcome">Welcome!</string>
+
+    <string name="imageScreen1">Explore South Tyrol and check out historical pictures at different locations</string>
+    <string name="imageScreen2">Take pictures identical to the historical ones</string>
+    <string name="imageScreen3">Earn points and exchange them for discounts at local for discounts from local companies</string>
+
 </resources>
