@@ -85,6 +85,7 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
                             Intent i = new Intent(
                                     HistoricalPictureFoundActivity.this,
                                     ProfileActivity.class);
+                            i.putExtra("POINTS", challengeResult.getPoints());
                             startActivity(new Intent(i));
                         }
                     }

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActionBar().hide();
+        //getActionBar().hide();
 
         intromanager = new Intromanager(this);
         if(!intromanager.Check()){
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         skip = (Button) findViewById(R.id.btn_skip);
         next = (Button) findViewById(R.id.btn_next);
 
-        layouts = new int[]{R.layout.activity_screen_1, R.layout.activity_screen_2, R.layout.activity_screen_3, R.layout.activity_screen_4};
+        layouts = new int[]{R.layout.activity_screen_0, R.layout.activity_screen_1, R.layout.activity_screen_2, R.layout.activity_screen_3, R.layout.activity_screen_4};
 
         addBottomDots(0);
 

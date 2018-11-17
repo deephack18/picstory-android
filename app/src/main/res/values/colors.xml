@@ -5,21 +5,24 @@
     <color name="colorAccent">#220a37</color>
 
 
-    <color name="dot_dark_screen1">#9a9a9a</color>
+    <color name="dot_dark_screen1">@color/colorPrimary</color>
     <color name="dot_dark_screen2">#9a9a9a</color>
     <color name="dot_dark_screen3">#9a9a9a</color>
     <color name="dot_dark_screen4">#9a9a9a</color>
+    <color name="dot_dark_screen5">#9a9a9a</color>
 
-    <color name="dot_light_screen1">#ffffff</color>
+    <color name="dot_light_screen1">#@color/colorPrimary</color>
     <color name="dot_light_screen2">#ffffff</color>
     <color name="dot_light_screen3">#ffffff</color>
     <color name="dot_light_screen4">#ffffff</color>
+    <color name="dot_light_screen5">#ffffff</color>
 
     <array name="dot_active">
         <item>@color/dot_light_screen1</item>
         <item>@color/dot_light_screen2</item>
         <item>@color/dot_light_screen3</item>
         <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen5</item>
     </array>
 
     <array name="dot_inactive">
@@ -27,5 +30,6 @@
         <item>@color/dot_dark_screen2</item>
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen5</item>
     </array>
 </resources>

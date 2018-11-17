@@ -31,6 +31,14 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        Intent intent = getIntent();
+        String points = intent.getStringExtra("POINTS");
+
+        if(true){
+            Toast.makeText(ProfileActivity.this, "You earned" + points + "points!", Toast.LENGTH_SHORT);
+        }
+
+
         RequestSender.sendLocation(this, LNG, LAT, new RequestSender.CheckLocationCallBack() {
             @Override
             public void onHistoricalPictureFound(Challenge challenge) {
@@ -57,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-// notificationId is a unique int for each notification that you must define
+        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(challengeId, mBuilder.build());
     }
 
