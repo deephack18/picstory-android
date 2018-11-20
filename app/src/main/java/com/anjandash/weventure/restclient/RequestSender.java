@@ -1,6 +1,7 @@
 package com.anjandash.weventure.restclient;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.anjandash.weventure.restclient.model.Challenge;
@@ -17,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RequestSender {
+    private static final String TAG = "RequestSender";
     private static WebApi INSTANCE = null;
 
     private static final String BASE_URL = "https://picventure.herokuapp.com";
@@ -42,7 +44,7 @@ public class RequestSender {
     }
 
     public interface CheckLocationCallBack {
-        void onHistoricalPictureFound(Challenge challenge);
+        void onHistoricalPictureFound(Context context, Challenge challenge);
     }
 
     public static void sendLocation(final Context context, double lng, double lat, final CheckLocationCallBack checkLocationCallBack) {
@@ -52,7 +54,12 @@ public class RequestSender {
             @Override
             public void onResponse(Call<Challenge> call, Response<Challenge> response) {
                 if (response.isSuccessful()) {
-                    checkLocationCallBack.onHistoricalPictureFound(response.body());
+                    Challenge challenge = response.body();
+                    if (challenge.getFound() == 1) {
+                        checkLocationCallBack.onHistoricalPictureFound(context, response.body());
+                    } else {
+                        Log.i(TAG, "No historical photos nearby.");
+                    }
                 } else {
                     Toast.makeText(context, response.message(), Toast.LENGTH_SHORT)
                             .show();

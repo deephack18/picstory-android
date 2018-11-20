@@ -1,14 +1,12 @@
 package com.anjandash.weventure;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -17,43 +15,27 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anjandash.weventure.restclient.Intromanager;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderApi;
+import com.anjandash.weventure.service.LocationService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FusedLocationProviderClient mFusedLocationClient;
+    private static final long INTERVAL_MILLIS = 1000 * 60 * 15;
+    private static final long FLEX_MILLIS = 1000 * 60 * 5;
+
     private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 12;
-    private static final String REQUESTING_LOCATION_UPDATES_KEY = "KEY";
+    private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 13;
 
-    private Location mCurrentLocation;
-    private Boolean mRequestingLocationUpdates = true;
-    private LocationCallback mLocationCallback;
-    private LocationRequest mLocationRequest;
-
-    LocationRequest locationRequest;
-    GoogleApiClient googleApiClient;
-    FusedLocationProviderApi fusedLocationProviderApi;
 
     private ViewPager viewPager;
     private Intromanager intromanager;
@@ -128,30 +110,20 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSION_ACCESS_COARSE_LOCATION);
         }
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_ACCESS_FINE_LOCATION);
+        }
 
-//        LocationManager locationManager = (LocationManager)
-//                getSystemService(Context.LOCATION_SERVICE);
-//        LocationListener locationListener = new MyLocationListener();
-//        try {
-//            locationManager.requestLocationUpdates(
-//                    LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        Button button = (Button) findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-//                intent.putExtra("MESSAGE:", "MainAct");
-//                startActivity(intent);
-//
-//            }
-//        });
-
-
+        JobScheduler jobScheduler =
+                (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(new JobInfo.Builder(LocationService.LOCATION_SERVICE_JOB_ID,
+                new ComponentName(this, LocationService.class))
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPeriodic(INTERVAL_MILLIS, FLEX_MILLIS)
+                .build());
     }
+
+
 
     private void addBottomDots(int position){
 

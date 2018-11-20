@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 
+import static com.anjandash.weventure.service.HistoricalPictureFoundCallback.LATEST_CHALLENGE_PREF;
+import static com.anjandash.weventure.service.HistoricalPictureFoundCallback.PIC_STORY_PREFS;
+
 /**
  * Created by hlib on 11/17/18.
  */
@@ -100,8 +103,8 @@ public class HistoricalPictureFoundActivity extends AppCompatActivity {
 
     private Challenge getChallengeFromSharedPreferences() {
         Gson gson = new Gson();
-        SharedPreferences mPrefs = getSharedPreferences("challenge", MODE_PRIVATE);
-        String json = mPrefs.getString("latest_challenge", "");
+        SharedPreferences mPrefs = getSharedPreferences(PIC_STORY_PREFS, MODE_PRIVATE);
+        String json = mPrefs.getString(LATEST_CHALLENGE_PREF, "");
         Challenge challenge = gson.fromJson(json, Challenge.class);
         return challenge;
     }
