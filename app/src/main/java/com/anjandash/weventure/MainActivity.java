@@ -1,12 +1,8 @@
 package com.anjandash.weventure;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.anjandash.weventure.restclient.Intromanager;
-import com.anjandash.weventure.service.LocationService;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final long INTERVAL_MILLIS = 1000 * 60 * 15;
-    private static final long FLEX_MILLIS = 1000 * 60 * 5;
+    private static final String TAG = "MainActivity";
 
     private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 12;
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 13;
-
 
     private ViewPager viewPager;
     private Intromanager intromanager;
@@ -113,14 +103,6 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_ACCESS_FINE_LOCATION);
         }
-
-        JobScheduler jobScheduler =
-                (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        jobScheduler.schedule(new JobInfo.Builder(LocationService.LOCATION_SERVICE_JOB_ID,
-                new ComponentName(this, LocationService.class))
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setPeriodic(INTERVAL_MILLIS, FLEX_MILLIS)
-                .build());
     }
 
 
